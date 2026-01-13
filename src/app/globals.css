@@ -13,14 +13,8 @@
   .glass-panel {
     @apply bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-xl;
   }
-  
-  /* Utility animasi delay biar gerakannya tidak barengan */
-  .animation-delay-2000 {
-    animation-delay: 2s;
-  }
-  .animation-delay-4000 {
-    animation-delay: 4s;
-  }
+  .animation-delay-2000 { animation-delay: 2s; }
+  .animation-delay-4000 { animation-delay: 4s; }
 }
 
 body {
@@ -28,35 +22,47 @@ body {
   color: #ffffff;
   font-family: var(--font-mono);
   overflow-x: hidden;
-  /* Kursor default di HP, Crosshair di Desktop */
   cursor: default; 
+  -webkit-tap-highlight-color: transparent;
 }
 @media (min-width: 768px) {
   body { cursor: crosshair; }
 }
 
-/* --- ANIMASI BACKGROUND GRID --- */
+/* --- BACKGROUND GRID --- */
 .bg-cyber-grid {
   background-image: 
     linear-gradient(to right, rgba(6, 182, 212, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
-  background-size: 50px 50px;
+  background-size: 40px 40px;
   mask-image: radial-gradient(ellipse at center, black 40%, transparent 100%);
 }
 
-/* --- ANIMASI MELAYANG (UNTUK MOBILE) --- */
+/* --- ANIMASI PARTIKEL (DIPERBAIKI) --- */
+@keyframes floatUp {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  20% { opacity: 0.8; transform: scale(1); } /* <-- INI YANG TADI ERROR */
+  80% { opacity: 0.5; transform: scale(1); } /* <-- INI JUGA */
+  100% { transform: translateY(-10vh) scale(0); opacity: 0; }
+}
+.particle {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  animation: floatUp linear infinite;
+}
+
+/* --- ANIMASI BLOB --- */
 @keyframes blob {
   0% { transform: translate(0px, 0px) scale(1); }
   33% { transform: translate(30px, -50px) scale(1.1); }
   66% { transform: translate(-20px, 20px) scale(0.9); }
   100% { transform: translate(0px, 0px) scale(1); }
 }
+.animate-blob { animation: blob 10s infinite; }
 
-.animate-blob {
-  animation: blob 7s infinite;
-}
-
-/* --- EASTER EGG --- */
+/* --- EASTER EGG & GLITCH --- */
 @keyframes glitch-anim {
   0% { transform: translate(0); }
   20% { transform: translate(-2px, 2px); }
@@ -65,9 +71,8 @@ body {
   80% { transform: translate(2px, -2px); }
   100% { transform: translate(0); }
 }
-
 .animate-glitch {
-  animation: glitch-anim 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+  animation: glitch-anim 0.2s cubic-bezier(.25, .46, .45, .94) both infinite;
   color: #ef4444;
   text-shadow: 2px 2px #0ea5e9;
 }
