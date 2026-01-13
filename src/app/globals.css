@@ -13,8 +13,6 @@
   .glass-panel {
     @apply bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-xl;
   }
-  .animation-delay-2000 { animation-delay: 2s; }
-  .animation-delay-4000 { animation-delay: 4s; }
 }
 
 body {
@@ -29,20 +27,68 @@ body {
   body { cursor: crosshair; }
 }
 
-/* --- BACKGROUND GRID --- */
-.bg-cyber-grid {
-  background-image: 
-    linear-gradient(to right, rgba(6, 182, 212, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
-  mask-image: radial-gradient(ellipse at center, black 40%, transparent 100%);
+/* --- TEKSTUR SCANLINES (Tetap Ada) --- */
+.bg-scanlines {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.3)
+  );
+  background-size: 100% 4px;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 5;
 }
 
-/* --- ANIMASI PARTIKEL (DIPERBAIKI) --- */
+/* --- HUD CORNERS (SIKU POJOK) --- */
+/* Warnanya sekarang diatur via class Tailwind di HTML, bukan disini */
+.hud-corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-style: solid;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.group:hover .hud-corner {
+  width: 20px; /* Memanjang pas hover */
+  height: 20px;
+  opacity: 1;
+}
+
+/* Posisi Siku */
+.tl { top: 0; left: 0; border-top-width: 2px; border-left-width: 2px; }
+.tr { top: 0; right: 0; border-top-width: 2px; border-right-width: 2px; }
+.bl { bottom: 0; left: 0; border-bottom-width: 2px; border-left-width: 2px; }
+.br { bottom: 0; right: 0; border-bottom-width: 2px; border-right-width: 2px; }
+
+/* --- ANIMASI --- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Background & Particles */
+.bg-cyber-grid {
+  background-image: 
+    linear-gradient(to right, rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, black 20%, transparent 100%);
+}
+
 @keyframes floatUp {
   0% { transform: translateY(100vh) scale(0); opacity: 0; }
-  20% { opacity: 0.8; transform: scale(1); } /* <-- INI YANG TADI ERROR */
-  80% { opacity: 0.5; transform: scale(1); } /* <-- INI JUGA */
+  20% { opacity: 0.8; transform: scale(1); }
+  80% { opacity: 0.5; transform: scale(1); }
   100% { transform: translateY(-10vh) scale(0); opacity: 0; }
 }
 .particle {
@@ -53,7 +99,6 @@ body {
   animation: floatUp linear infinite;
 }
 
-/* --- ANIMASI BLOB --- */
 @keyframes blob {
   0% { transform: translate(0px, 0px) scale(1); }
   33% { transform: translate(30px, -50px) scale(1.1); }
@@ -62,7 +107,6 @@ body {
 }
 .animate-blob { animation: blob 10s infinite; }
 
-/* --- EASTER EGG & GLITCH --- */
 @keyframes glitch-anim {
   0% { transform: translate(0); }
   20% { transform: translate(-2px, 2px); }
