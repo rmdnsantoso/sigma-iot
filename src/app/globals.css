@@ -121,6 +121,19 @@ body {
   text-shadow: 2px 2px #0ea5e9;
 }
 
+/* --- ANIMASI TAMBAHAN --- */
+
+/* Animasi melayang lambat untuk Gambar Produk Utama */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); } /* Gerak ke atas 15px */
+}
+
+.animate-float-slow {
+  animation: float-slow 5s ease-in-out infinite;
+}
+
+
 @keyframes blink { 50% { opacity: 0; } }
 .cursor-blink::after { content: '_'; animation: blink 1s step-start infinite; }
 

@@ -10,7 +10,7 @@ const features = [
   { id: 4, title: "SETTING LEWAT HP", desc: "Cukup sambungkan HP ke WiFi alat (Sinyal Lokal), lalu atur jadwal semudah main HP. Praktis.", icon: "📱", borderClass: "hover:border-orange-500", textClass: "text-orange-400" }
 ];
 
-// DATA KOMPONEN (HARDCODED CLASS WARNA)
+// DATA KOMPONEN (HARDCODED CLASS WARNA - Sesuai Request Sebelumnya)
 const hardwareSpecs = [
   { 
     id: 1,
@@ -163,7 +163,7 @@ export default function Home() {
         </nav>
 
         {/* HERO SECTION */}
-        <section className="h-screen flex flex-col justify-center items-center px-6 -mt-16 md:-mt-20 relative">
+        <section className="min-h-screen flex flex-col justify-center items-center px-6 pt-24 pb-32 md:pt-0 md:pb-0 relative">
           <div className="text-center space-y-2 max-w-4xl mx-auto">
             <p className="text-cyan-500 tracking-[0.5em] text-[10px] md:text-xs font-bold uppercase mb-4 animate-pulse animate-fade-in" style={{ animationDelay: '100ms' }}>
               KKN TEMATIK 56 ITERA
@@ -178,17 +178,27 @@ export default function Home() {
             <div className="h-[2px] w-24 md:w-32 bg-gradient-to-r from-transparent via-cyan-500 to-transparent mx-auto my-8 animate-fade-in" style={{ animationDelay: '300ms' }}></div>
             
             <h2 className="text-sm md:text-3xl text-cyan-400 font-bold font-mono uppercase tracking-widest px-4 animate-fade-in" style={{ animationDelay: '400ms' }}>
-              Sistem IoT Genta Mandiri Akurat
+              (Sistem IoT Genta Mandiri Akurat)
             </h2>
             
             <p className="text-slate-400 mt-8 max-w-2xl mx-auto leading-relaxed text-xs md:text-base px-4 animate-fade-in" style={{ animationDelay: '500ms' }}>
               Bel Sekolah Otomatis yang <span className="text-white font-bold">Canggih, Awet, dan Hemat Listrik</span>. 
               Bekerja mandiri tanpa internet, pengaturan mudah cukup dari Handphone.
             </p>
+
+            {/* --- GAMBAR PCB (HANYA INI YANG BARU) --- */}
+            <div className="mt-10 md:mt-16 animate-fade-in relative z-20" style={{ animationDelay: '700ms' }}>
+               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-2/3 bg-cyan-500/20 blur-[60px] rounded-full -z-10"></div>
+               <img
+                 src="/images/pcb-sigma.png" 
+                 alt="Mainboard PCB S.I.G.M.A"
+                 className="w-[85%] md:w-[50%] max-w-lg mx-auto drop-shadow-[0_20px_35px_rgba(6,182,212,0.25)] animate-float-slow"
+               />
+            </div>
+            {/* ------------------------------------- */}
           </div>
           
-          {/* --- SCROLL INDICATOR (SUDAH KEMBALI & LEBIH TERANG) --- */}
-          <div className="absolute bottom-10 md:bottom-12 animate-bounce text-cyan-400/80 animate-fade-in z-20" style={{ animationDelay: '1000ms' }}>
+          <div className="absolute bottom-10 md:bottom-12 animate-bounce text-cyan-400/80 animate-fade-in z-20" style={{ animationDelay: '1200ms' }}>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
@@ -231,7 +241,6 @@ export default function Home() {
                   className="group relative p-6 border border-slate-800 bg-slate-900/30 hover:bg-slate-800/50 transition-colors animate-fade-in"
                   style={{ animationDelay: `${idx * 100}ms` }}
                 >
-                  {/* HUD CORNERS */}
                   <div className={`hud-corner tl ${spec.borderStyle}`}></div>
                   <div className={`hud-corner tr ${spec.borderStyle}`}></div>
                   <div className={`hud-corner bl ${spec.borderStyle}`}></div>
@@ -239,7 +248,6 @@ export default function Home() {
 
                   <div className="flex justify-between items-start mb-4">
                      <div className={`${spec.iconStyle} text-2xl`}>{spec.icon}</div>
-                     {/* LABEL WARNA WARNI */}
                      <span className={`text-[10px] font-mono font-bold px-2 py-1 rounded border uppercase tracking-widest ${spec.tagStyle}`}>
                        {spec.tag}
                      </span>
@@ -256,11 +264,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FOOTER */}
+        {/* FOOTER (KEMBALI KE VERSI "SAVE" KAMU) */}
         <footer className="py-8 border-t border-slate-800 bg-[#010409] text-center relative animate-fade-in">
           <p className="font-orbitron text-xl font-bold text-slate-700">S.I.G.M.A</p>
           <p className="text-slate-600 text-[10px] mt-2 font-mono uppercase tracking-widest">© 2026 Program Kerja Bel Otomatis Sekolah | KKN Tematik 56 ITERA - Desa Bandarejo</p>
-        <p className="text-slate-600 text-[10px] mt-2 font-mono uppercase tracking-widest">INSTITUT TEKNOLOGI SUMATERA</p>
+          <p className="text-slate-600 text-[10px] mt-2 font-mono uppercase tracking-widest">INSTITUT TEKNOLOGI SUMATERA</p>
         </footer>
       
       </div>
